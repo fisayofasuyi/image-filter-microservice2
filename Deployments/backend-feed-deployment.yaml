@@ -1,23 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-feed
+  name: backend-feed
   labels:
-    app: api-feed
+    app: backend-feed
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: api-feed
+      app: backend-feed
   template:
     metadata:
       labels:
-        app: api-feed
+        app: backend-feed
     spec:   
       containers:
-      - name: api-feed 
-        image: fredmann1993/api-feed
+      - name: backend-feed
+        image: fredmann1993/api-feed:v1
         imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
         envFrom:
         - secretRef: 
             name: aws-secret
@@ -27,4 +34,5 @@ spec:
       - name: config-dir
         configMap:
          name: envconfigmap
+      
         
