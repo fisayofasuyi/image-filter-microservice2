@@ -16,7 +16,7 @@ spec:
     spec:   
       containers:
       - name: frontend 
-        image: fredmann1993/frontend
+        image: fredmann1993/frontend:frontend
         imagePullPolicy: Always
         resources:
          limits:
