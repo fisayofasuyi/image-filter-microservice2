@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-user
+  labels:
+    app: backend-user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-user
+  template:
+    metadata:
+      labels:
+        app: backend-user
+    spec:   
+      containers:
+      - name: backend-user 
+        image: fredmann1993/api-user
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        envFrom:
+        - secretRef: 
+            name: aws-secret
+        - secretRef:
+            name: envsecret
+      volumes:
+      - name: config-dir
+        configMap:
+         name: envconfigmap
+        

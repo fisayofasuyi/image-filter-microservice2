@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-rev-proxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: udagram-rev-proxy
+      
+  template:
+    metadata:
+      labels:
+        run : udagram-rev-proxy
+    spec:   
+      containers:
+      - name: reverse-proxy 
+        image: fredmann1993/reverse-proxy
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80 
+        envFrom:
+        - secretRef: 
+            name: aws-secret
+        - secretRef:
+            name: envsecret
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: udagram-rev-proxy
+  labels:
+    service: udagram-rev-proxy
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    service: udagram-rev-proxy
+
+  
+
+
