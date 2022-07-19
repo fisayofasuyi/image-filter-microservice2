@@ -14,7 +14,7 @@ import {V0_USER_MODELS} from './controllers/v0/model.index';
 
   try
   {
-  console.log("Initialize database connection...");
+  console.debug("Initialize database connection...");
   await sequelize.sync();
   }
 

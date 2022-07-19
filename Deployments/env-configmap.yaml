@@ -4,10 +4,11 @@ kind: ConfigMap
 metadata:
   name: envconfigmap
 data:
- POSTGRES_HOST: database-1.c5ljw5x5onbk.us-east-1.rds.amazonaws.com
+ 
+ POSTGRES_HOST: mydbaws93.c5ljw5x5onbk.us-east-1.rds.amazonaws.com
  POSTGRES_DB: postgres
- JWT_SECRET: Testing
- AWS_BUCKET: arn:aws:s3:::my1993bucket
+ JWT_SECRET: testing
+ AWS_BUCKET: arn:aws:s3:::mys3bucket93
  AWS_REGION: us-east-1
  AWS_PROFILE: default
  URL: http://localhost:8100
