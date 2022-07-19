@@ -16,7 +16,7 @@ spec:
     spec:   
       containers:
       - name: backend-feed
-        image: fredmann1993/api-feed:v1
+        image: fredmann1993/api-feed:v2
         imagePullPolicy: Always
         ports:
         - containerPort: 80
